@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\produk_hukum;
 
-use App\Http\Controllers\Controller;
 use App\Models\KeputusanDireksiModel;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 class KeputusanDireksiController extends Controller

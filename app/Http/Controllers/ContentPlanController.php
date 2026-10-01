@@ -57,19 +57,9 @@ class ContentPlanController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate($this->contentPlanRules());
+        $validated = $request->validate($this->contentPlanRules());
 
-        ContentPlanModel::create([
-            'tanggal_upload' => $request->tanggal_upload,
-            'time_upload' => $request->time_upload,
-            'jenis_konten' => $request->jenis_konten,
-            'judul_konten' => $request->judul_konten,
-            'brief' => $request->brief,
-            'link_draft' => $request->link_draft,
-            'caption' => $request->caption,
-            'feedback' => $request->feedback,
-            'status' => $request->status,
-        ]);
+        ContentPlanModel::create($validated);
 
         return redirect()
             ->route('content_plan.index')
@@ -100,21 +90,10 @@ class ContentPlanController extends Controller
 
     public function update(Request $request, $id)
     {
-        $request->validate($this->contentPlanRules());
+        $validated = $request->validate($this->contentPlanRules());
 
         $data = ContentPlanModel::findOrFail($id);
-
-        $data->update([
-            'tanggal_upload' => $request->tanggal_upload,
-            'time_upload' => $request->time_upload,
-            'jenis_konten' => $request->jenis_konten,
-            'judul_konten' => $request->judul_konten,
-            'brief' => $request->brief,
-            'link_draft' => $request->link_draft,
-            'caption' => $request->caption,
-            'feedback' => $request->feedback,
-            'status' => $request->status,
-        ]);
+        $data->update($validated);
 
         return redirect()->route('content_plan.index');
     }
