@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\ContentPlanModel;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 class ContentPlanController extends Controller
@@ -10,9 +11,9 @@ class ContentPlanController extends Controller
     public function index(Request $request)
     {
         // Validasi filter tanggal
-        $request->validate([
-            'tanggal_mulai' => 'nullable|date',
-            'tanggal_selesai' => 'nullable|date|after_or_equal:tanggal_mulai',
+    $request->validate([
+        'tanggal_mulai' => 'nullable|date',
+        'tanggal_selesai' => 'nullable|date|after_or_equal:tanggal_mulai',
         ]);
 
         // Membuat query dasar untuk mengambil data Content Plan
@@ -30,17 +31,17 @@ class ContentPlanController extends Controller
 
         // Filter berdasarkan judul konten
         if ($request->judul_konten) {
-            $query->where('judul_konten', 'like', '%'.$request->judul_konten.'%');
+             $query->where('judul_konten', 'like', '%' . $request->judul_konten . '%');
         }
 
         // Filter berdasarkan tanggal mulai
         if ($request->tanggal_mulai) {
-            $query->whereDate('tanggal_upload', '>=', $request->tanggal_mulai);
+        $query->whereDate('tanggal_upload', '>=', $request->tanggal_mulai);
         }
 
         // Filter berdasarkan tanggal selesai
         if ($request->tanggal_selesai) {
-            $query->whereDate('tanggal_upload', '<=', $request->tanggal_selesai);
+        $query->whereDate('tanggal_upload', '<=', $request->tanggal_selesai);
         }
 
         // Menjalankan query dan mengambil hasilnya
@@ -57,38 +58,33 @@ class ContentPlanController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate($this->contentPlanRules());
-
-        ContentPlanModel::create([
-            'tanggal_upload' => $request->tanggal_upload,
-            'time_upload' => $request->time_upload,
-            'jenis_konten' => $request->jenis_konten,
-            'judul_konten' => $request->judul_konten,
-            'brief' => $request->brief,
-            'link_draft' => $request->link_draft,
-            'caption' => $request->caption,
-            'feedback' => $request->feedback,
-            'status' => $request->status,
-        ]);
-
-        return redirect()
-            ->route('content_plan.index')
-            ->with('success', 'Content Plan berhasil ditambahkan.');
-    }
-
-    private function contentPlanRules(): array
-    {
-        return [
+         $request->validate([
             'tanggal_upload' => 'required|date',
             'time_upload' => 'required',
             'jenis_konten' => 'required|in:Single,Carousel',
             'judul_konten' => 'required|string|max:255',
-            'brief' => 'required|string|max:255',
-            'link_draft' => 'required|url|max:255',
+            'brief' => 'nullable|string',
+            'link_draft' => 'nullable|url',
             'caption' => 'nullable|string',
-            'feedback' => 'required|string|max:255',
+            'feedback' => 'nullable|string',
             'status' => 'required|in:Draft,Review,Approved,Published',
-        ];
+    ]);
+
+    ContentPlanModel::create([
+        'tanggal_upload' => $request->tanggal_upload,
+        'time_upload' => $request->time_upload,
+        'jenis_konten' => $request->jenis_konten,
+        'judul_konten' => $request->judul_konten,
+        'brief' => $request->brief,
+        'link_draft' => $request->link_draft,
+        'caption' => $request->caption,
+        'feedback' => $request->feedback,
+        'status' => $request->status,
+    ]);
+
+    return redirect()
+        ->route('content_plan.index')
+        ->with('success', 'Content Plan berhasil ditambahkan.');
     }
 
     public function edit($id)
@@ -100,8 +96,6 @@ class ContentPlanController extends Controller
 
     public function update(Request $request, $id)
     {
-        $request->validate($this->contentPlanRules());
-
         $data = ContentPlanModel::findOrFail($id);
 
         $data->update([
