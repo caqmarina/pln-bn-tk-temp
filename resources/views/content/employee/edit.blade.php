@@ -23,7 +23,7 @@
 
                     <div class="mb-4">
                         <label class="form-label">Nama</label>
-                        <input 
+                        <input
                             type="text"
                             class="form-control"
                             name="nama"
@@ -34,7 +34,7 @@
 
                     <div class="mb-4">
                         <label class="form-label">NIP</label>
-                        <input 
+                        <input
                             type="text"
                             class="form-control"
                             name="nip"
@@ -45,7 +45,7 @@
 
                     <div class="mb-4">
                         <label class="form-label">Direktorat</label>
-                        <input 
+                        <input
                             type="text"
                             class="form-control"
                             name="direktorat"
@@ -56,7 +56,7 @@
 
                     <div class="mb-4">
                         <label class="form-label">Bidang</label>
-                        <input 
+                        <input
                             type="text"
                             class="form-control"
                             name="bidang"
@@ -67,30 +67,12 @@
 
                     <div class="mb-4">
                         <label class="form-label">Email</label>
-                        <input 
+                        <input
                             type="email"
                             class="form-control"
                             name="email"
                             value="{{ $data->email }}"
                             placeholder="email@email.com"
-                        />
-                    </div>
-                    <div class="mb-4">
-                        <label class="form-label">New Password (optional)</label>
-                        <input
-                            type="password"
-                            class="form-control"
-                            name="password"
-                            placeholder="Leave blank to keep current password"
-                        />
-                    </div>
-                    <div class="mb-4">
-                        <label class="form-label">Confirm New Password</label>
-                        <input
-                            type="password"
-                            class="form-control"
-                            name="password_confirmation"
-                            placeholder="Repeat new password"
                         />
                     </div>
                     <button type="submit" class="btn btn-primary">
