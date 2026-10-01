@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\authentications;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -14,11 +13,11 @@ class LoginBasic extends Controller
         return view('content.authentications.auth-login-basic');
     }
 
-    public function login(Request $request): RedirectResponse
+    public function login(Request $request)
     {
         $request->validate([
-            'email-username' => ['required'],
-            'password' => ['required', 'string'],
+            'email-username' => 'required',
+            'password' => 'required',
         ]);
 
         $login = $request->input('email-username');
@@ -33,22 +32,21 @@ class LoginBasic extends Controller
             $credentials['nip'] = $login;
         }
 
-        if (! Auth::attempt($credentials, $request->boolean('remember'))) {
-            return back()
-                ->withErrors([
-                    'email-username' => 'Email/NIP atau password salah.',
-                ])
-                ->onlyInput('email-username');
+        if (Auth::attempt($credentials)) {
+            $request->session()->regenerate();
+
+            return redirect()->route('dashboard-analytics');
         }
 
-        $request->session()->regenerate();
-
-        return redirect()->intended('/content_plan');
+        return back()->withErrors([
+            'email-username' => 'Email/NIP atau password salah.',
+        ])->onlyInput('email-username');
     }
 
-    public function logout(Request $request): RedirectResponse
+    public function logout(Request $request)
     {
         Auth::logout();
+
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 

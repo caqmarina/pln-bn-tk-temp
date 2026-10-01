@@ -14,72 +14,248 @@
 
         <div class="card-body">
 
-            <form action="{{ route('content_plan.store') }}" method="POST">
+            {{-- ERROR VALIDASI --}}
+            @if ($errors->any())
+
+                <div class="alert alert-danger">
+
+                    <strong>Data belum dapat disimpan:</strong>
+
+                    <ul class="mb-0 mt-2">
+
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+
+                    </ul>
+
+                </div>
+
+            @endif
+
+
+            {{-- FORM --}}
+            <form action="{{ route('content_plan.store') }}"
+                method="POST">
+
                 @csrf
 
+
+                {{-- TANGGAL UPLOAD --}}
                 <div class="mb-3">
-                    <label>Tanggal Upload</label>
+
+                    <label for="tanggal_upload"
+                        class="form-label">
+
+                        Tanggal Upload
+
+                    </label>
+
                     <input type="date"
                         name="tanggal_upload"
-                        class="form-control">
+                        id="tanggal_upload"
+                        class="form-control"
+                        value="{{ old('tanggal_upload') }}">
+
                 </div>
 
+
+                {{-- TIME UPLOAD --}}
                 <div class="mb-3">
-                    <label>Time Upload</label>
+
+                    <label for="time_upload"
+                        class="form-label">
+
+                        Time Upload
+
+                    </label>
+
                     <input type="time"
                         name="time_upload"
+                        id="time_upload"
+                        class="form-control"
+                        value="{{ old('time_upload') }}">
+
+                </div>
+
+
+                {{-- JENIS KONTEN --}}
+                <div class="mb-3">
+
+                    <label for="jenis_konten"
+                        class="form-label">
+
+                        Jenis Konten
+
+                    </label>
+
+                    <select name="jenis_konten"
+                        id="jenis_konten"
                         class="form-control">
-                </div>
 
-                <div class="mb-3">
-                    <label>Jenis Konten</label>
+                        <option value="Single"
+                            {{ old('jenis_konten') == 'Single' ? 'selected' : '' }}>
 
-                    <select name="jenis_konten" class="form-control">
-                        <option value="Single">Single</option>
-                        <option value="Carausel">Carausel</option>
+                            Single
+
+                        </option>
+
+                        <option value="Carausel"
+                            {{ old('jenis_konten') == 'Carausel' ? 'selected' : '' }}>
+
+                            Carausel
+
+                        </option>
+
                     </select>
+
                 </div>
 
+
+                {{-- JUDUL KONTEN --}}
                 <div class="mb-3">
-                    <label>Judul Konten</label>
+
+                    <label for="judul_konten"
+                        class="form-label">
+
+                        Judul Konten
+
+                    </label>
+
                     <input type="text"
                         name="judul_konten"
-                        class="form-control">
+                        id="judul_konten"
+                        class="form-control"
+                        value="{{ old('judul_konten') }}">
+
                 </div>
 
+
+                {{-- BRIEF --}}
                 <div class="mb-3">
-                    <label>Link Draft</label>
+
+                    <label for="brief"
+                        class="form-label">
+
+                        Brief
+
+                    </label>
+
+                    <input type="text"
+                        name="brief"
+                        id="brief"
+                        class="form-control"
+                        value="{{ old('brief') }}">
+
+                </div>
+
+
+                {{-- LINK DRAFT --}}
+                <div class="mb-3">
+
+                    <label for="link_draft"
+                        class="form-label">
+
+                        Link Draft
+
+                    </label>
+
                     <input type="text"
                         name="link_draft"
-                        class="form-control">
+                        id="link_draft"
+                        class="form-control"
+                        value="{{ old('link_draft') }}">
+
                 </div>
 
+
+                {{-- CAPTION --}}
                 <div class="mb-3">
-                    <label>Caption</label>
+
+                    <label for="caption"
+                        class="form-label">
+
+                        Caption
+
+                    </label>
+
                     <textarea name="caption"
-                        class="form-control"></textarea>
+                        id="caption"
+                        class="form-control">{{ old('caption') }}</textarea>
+
                 </div>
 
+
+                {{-- FEEDBACK --}}
                 <div class="mb-3">
-                    <label>Feedback</label>
+
+                    <label for="feedback"
+                        class="form-label">
+
+                        Feedback
+
+                    </label>
+
                     <textarea name="feedback"
-                        class="form-control"></textarea>
+                        id="feedback"
+                        class="form-control">{{ old('feedback') }}</textarea>
+
                 </div>
 
+
+                {{-- STATUS --}}
                 <div class="mb-3">
-                    <label>Status</label>
 
-                    <select name="status" class="form-control">
-                        <option value="Draft">Draft</option>
-                        <option value="Review">Review</option>
-                        <option value="Approved">Approved</option>
-                        <option value="Published">Published</option>
+                    <label for="status"
+                        class="form-label">
+
+                        Status
+
+                    </label>
+
+                    <select name="status"
+                        id="status"
+                        class="form-control">
+
+                        <option value="Draft"
+                            {{ old('status') == 'Draft' ? 'selected' : '' }}>
+
+                            Draft
+
+                        </option>
+
+                        <option value="Review"
+                            {{ old('status') == 'Review' ? 'selected' : '' }}>
+
+                            Review
+
+                        </option>
+
+                        <option value="Approved"
+                            {{ old('status') == 'Approved' ? 'selected' : '' }}>
+
+                            Approved
+
+                        </option>
+
+                        <option value="Published"
+                            {{ old('status') == 'Published' ? 'selected' : '' }}>
+
+                            Published
+
+                        </option>
+
                     </select>
+
                 </div>
 
+
+                {{-- TOMBOL SAVE --}}
                 <button type="submit"
                     class="btn btn-primary">
+
                     Save
+
                 </button>
 
             </form>

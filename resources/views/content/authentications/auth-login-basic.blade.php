@@ -21,37 +21,19 @@
                         </a>
                     </div>
                     <!-- /Logo -->
+                    <h4 class="mb-1">Welcome to {{ config('variables.templateName') }}! 👋</h4>
+                    <p class="mb-6">Please sign-in to your account and start the adventure</p>
 
-                    <h4 class="mb-1">
-                        Welcome to {{ config('variables.templateName') }}! 👋
-                    </h4>
-
-                    <p class="mb-6">
-                        Please sign-in to your account and start the adventure
-                    </p>
-
-                    <form id="formAuthentication" class="mb-6" action="{{ route('login') }}" method="POST">
-                        @csrf
+                    <form id="formAuthentication" class="mb-6" action="{{ route('auth-login-basic.store') }}" method="POST">            
+                    @csrf
                         <div class="mb-6">
-                            <label for="email-username" class="form-label">
-                                Email or NIP
-                            </label>
-
-                            <input
-                                type="text"
-                                class="form-control"
-                                id="email-username"
-                                name="email-username"
-                                value="{{ old('email-username') }}"
-                                placeholder="Enter your email or NIP"
-                                autofocus
-                                required
-                            />
+                            <label for="email" class="form-label">Email or Username</label>
+                            <input type="text" class="form-control" id="email" name="email-username" placeholder="Enter your email or username" autofocus />
                         </div>
                         <div class="mb-6 form-password-toggle">
                             <label class="form-label" for="password">Password</label>
                             <div class="input-group input-group-merge">
-                                <input type="password" id="password" class="form-control" name="password" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" aria-describedby="password" required />
+                                <input type="password" id="password" class="form-control" name="password" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" aria-describedby="password" />
                                 <span class="input-group-text cursor-pointer"><i class="icon-base bx bx-hide"></i></span>
                             </div>
                         </div>
@@ -61,7 +43,6 @@
                                     <input class="form-check-input" type="checkbox" id="remember-me" />
                                     <label class="form-check-label" for="remember-me"> Remember Me </label>
                                 </div>
-
                             </div>
                         </div>
                         <div class="mb-6">
