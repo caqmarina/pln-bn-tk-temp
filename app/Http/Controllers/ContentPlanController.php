@@ -58,7 +58,28 @@ class ContentPlanController extends Controller
 
     public function store(Request $request)
     {
-         $request->validate([
+        $request->validate($this->contentPlanRules());
+
+        ContentPlanModel::create([
+            'tanggal_upload' => $request->tanggal_upload,
+            'time_upload' => $request->time_upload,
+            'jenis_konten' => $request->jenis_konten,
+            'judul_konten' => $request->judul_konten,
+            'brief' => $request->brief,
+            'link_draft' => $request->link_draft,
+            'caption' => $request->caption,
+            'feedback' => $request->feedback,
+            'status' => $request->status,
+        ]);
+
+        return redirect()
+            ->route('content_plan.index')
+            ->with('success', 'Content Plan berhasil ditambahkan.');
+    }
+
+    private function contentPlanRules(): array
+    {
+        return [
             'tanggal_upload' => 'required|date',
             'time_upload' => 'required',
             'jenis_konten' => 'required|in:Single,Carousel',
@@ -68,23 +89,7 @@ class ContentPlanController extends Controller
             'caption' => 'nullable|string',
             'feedback' => 'nullable|string',
             'status' => 'required|in:Draft,Review,Approved,Published',
-    ]);
-
-    ContentPlanModel::create([
-        'tanggal_upload' => $request->tanggal_upload,
-        'time_upload' => $request->time_upload,
-        'jenis_konten' => $request->jenis_konten,
-        'judul_konten' => $request->judul_konten,
-        'brief' => $request->brief,
-        'link_draft' => $request->link_draft,
-        'caption' => $request->caption,
-        'feedback' => $request->feedback,
-        'status' => $request->status,
-    ]);
-
-    return redirect()
-        ->route('content_plan.index')
-        ->with('success', 'Content Plan berhasil ditambahkan.');
+        ];
     }
 
     public function edit($id)
@@ -96,6 +101,8 @@ class ContentPlanController extends Controller
 
     public function update(Request $request, $id)
     {
+        $request->validate($this->contentPlanRules());
+
         $data = ContentPlanModel::findOrFail($id);
 
         $data->update([
