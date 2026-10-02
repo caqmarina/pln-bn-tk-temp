@@ -24,7 +24,8 @@
                     <h4 class="mb-1">Adventure starts here 🚀</h4>
                     <p class="mb-6">Make your app management easy and fun!</p>
 
-                    <form id="formAuthentication" class="mb-6" action="{{ url('/') }}" method="GET">
+                    <form id="formAuthentication" class="mb-6" action="{{ route('auth-register-basic.store') }}" method="POST">
+                    @csrf
                         <div class="mb-6">
                             <label for="username" class="form-label">Username</label>
                             <input type="text" class="form-control" id="username" name="username" placeholder="Enter your username" autofocus />

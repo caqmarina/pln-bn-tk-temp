@@ -6,7 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class ContentPlanModel extends Model
 {
-     protected $table = 'content_plans';
+    protected $table = 'content_plans';
+
     protected $fillable = [
         'tanggal_upload',
         'time_upload',
