@@ -1,21 +1,33 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\dashboard\Analytics;
-use App\Http\Controllers\layouts\WithoutMenu;
-use App\Http\Controllers\layouts\WithoutNavbar;
-use App\Http\Controllers\layouts\Fluid;
-use App\Http\Controllers\layouts\Container;
-use App\Http\Controllers\layouts\Blank;
-use App\Http\Controllers\pages\AccountSettingsAccount;
-use App\Http\Controllers\pages\AccountSettingsNotifications;
-use App\Http\Controllers\pages\AccountSettingsConnections;
-use App\Http\Controllers\pages\MiscError;
-use App\Http\Controllers\pages\MiscUnderMaintenance;
+use App\Http\Controllers\authentications\ForgotPasswordBasic;
 use App\Http\Controllers\authentications\LoginBasic;
 use App\Http\Controllers\authentications\RegisterBasic;
-use App\Http\Controllers\authentications\ForgotPasswordBasic;
 use App\Http\Controllers\cards\CardBasic;
+use App\Http\Controllers\ContentPlanController;
+use App\Http\Controllers\dashboard\Analytics;
+use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\extended_ui\PerfectScrollbar;
+use App\Http\Controllers\extended_ui\TextDivider;
+use App\Http\Controllers\form_elements\BasicInput;
+use App\Http\Controllers\form_elements\InputGroups;
+use App\Http\Controllers\form_layouts\HorizontalForm;
+use App\Http\Controllers\form_layouts\VerticalForm;
+use App\Http\Controllers\icons\Boxicons;
+use App\Http\Controllers\layouts\Blank;
+use App\Http\Controllers\layouts\Container;
+use App\Http\Controllers\layouts\Fluid;
+use App\Http\Controllers\layouts\WithoutMenu;
+use App\Http\Controllers\layouts\WithoutNavbar;
+use App\Http\Controllers\ListSouvenirController;
+use App\Http\Controllers\OperationalSouvenirController;
+use App\Http\Controllers\pages\AccountSettingsAccount;
+use App\Http\Controllers\pages\AccountSettingsConnections;
+use App\Http\Controllers\pages\AccountSettingsNotifications;
+use App\Http\Controllers\pages\MiscError;
+use App\Http\Controllers\pages\MiscUnderMaintenance;
+use App\Http\Controllers\produk_hukum\KeputusanDireksiController;
+use App\Http\Controllers\tables\Basic as TablesBasic;
 use App\Http\Controllers\user_interface\Accordion;
 use App\Http\Controllers\user_interface\Alerts;
 use App\Http\Controllers\user_interface\Badges;
@@ -35,28 +47,16 @@ use App\Http\Controllers\user_interface\TabsPills;
 use App\Http\Controllers\user_interface\Toasts;
 use App\Http\Controllers\user_interface\TooltipsPopovers;
 use App\Http\Controllers\user_interface\Typography;
-use App\Http\Controllers\extended_ui\PerfectScrollbar;
-use App\Http\Controllers\extended_ui\TextDivider;
-use App\Http\Controllers\icons\Boxicons;
-use App\Http\Controllers\form_elements\BasicInput;
-use App\Http\Controllers\form_elements\InputGroups;
-use App\Http\Controllers\form_layouts\VerticalForm;
-use App\Http\Controllers\form_layouts\HorizontalForm;
-use App\Http\Controllers\tables\Basic as TablesBasic;
-use App\Http\Controllers\EmployeeController;
-use App\Http\Controllers\ContentPlanController;
-use App\Http\Controllers\ListSouvenirController;
-use App\Http\Controllers\OperationalSouvenirController;
-use App\Http\Controllers\produk_hukum\KeputusanDireksiController;
+use Illuminate\Support\Facades\Route;
 
 Route::resource('employee', EmployeeController::class);
 Route::resource('content_plan', ContentPlanController::class);
-Route::resource('list_souvenir',ListSouvenirController::class);
-Route::resource('operationalsouvenir',OperationalSouvenirController::class);
+Route::resource('list_souvenir', ListSouvenirController::class);
+Route::resource('operationalsouvenir', OperationalSouvenirController::class);
 Route::resource('keputusandireksi', KeputusanDireksiController::class);
 
 // Main Page Route
-//Route::get('/layouts/employee', [Analytics::class, 'index'])->name('employee');
+// Route::get('/layouts/employee', [Analytics::class, 'index'])->name('employee');
 
 Route::get('/dashboard', [Analytics::class, 'index'])
     ->middleware('auth')

@@ -12,15 +12,15 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('keputusandireksi', function (Blueprint $table) {
-    $table->id();
-    $table->string('nomor');
-    $table->string('judul');
-    $table->date('tanggal_disahkan');
-    $table->date('tanggal_berlaku');
-    $table->string('status');
-    $table->string('dokumen_softcopy')->nullable();
-    $table->timestamps();
-});
+            $table->id();
+            $table->string('nomor');
+            $table->string('judul');
+            $table->date('tanggal_disahkan');
+            $table->date('tanggal_berlaku');
+            $table->string('status');
+            $table->string('dokumen_softcopy')->nullable();
+            $table->timestamps();
+        });
     }
 
     /**

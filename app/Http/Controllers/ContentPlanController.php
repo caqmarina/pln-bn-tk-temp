@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\ContentPlanModel;
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 class ContentPlanController extends Controller
@@ -11,9 +10,9 @@ class ContentPlanController extends Controller
     public function index(Request $request)
     {
         // Validasi filter tanggal
-    $request->validate([
-        'tanggal_mulai' => 'nullable|date',
-        'tanggal_selesai' => 'nullable|date|after_or_equal:tanggal_mulai',
+        $request->validate([
+            'tanggal_mulai' => 'nullable|date',
+            'tanggal_selesai' => 'nullable|date|after_or_equal:tanggal_mulai',
         ]);
 
         // Membuat query dasar untuk mengambil data Content Plan
@@ -31,17 +30,17 @@ class ContentPlanController extends Controller
 
         // Filter berdasarkan judul konten
         if ($request->judul_konten) {
-             $query->where('judul_konten', 'like', '%' . $request->judul_konten . '%');
+            $query->where('judul_konten', 'like', '%'.$request->judul_konten.'%');
         }
 
         // Filter berdasarkan tanggal mulai
         if ($request->tanggal_mulai) {
-        $query->whereDate('tanggal_upload', '>=', $request->tanggal_mulai);
+            $query->whereDate('tanggal_upload', '>=', $request->tanggal_mulai);
         }
 
         // Filter berdasarkan tanggal selesai
         if ($request->tanggal_selesai) {
-        $query->whereDate('tanggal_upload', '<=', $request->tanggal_selesai);
+            $query->whereDate('tanggal_upload', '<=', $request->tanggal_selesai);
         }
 
         // Menjalankan query dan mengambil hasilnya
