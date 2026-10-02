@@ -84,10 +84,10 @@ class ContentPlanController extends Controller
             'time_upload' => 'required',
             'jenis_konten' => 'required|in:Single,Carousel',
             'judul_konten' => 'required|string|max:255',
-            'brief' => 'nullable|string',
-            'link_draft' => 'nullable|url',
+            'brief' => 'required|string',
+            'link_draft' => 'required|url',
             'caption' => 'nullable|string',
-            'feedback' => 'nullable|string',
+            'feedback' => 'required|string',
             'status' => 'required|in:Draft,Review,Approved,Published',
         ];
     }
