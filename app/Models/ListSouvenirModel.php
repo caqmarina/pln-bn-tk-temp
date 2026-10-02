@@ -23,5 +23,3 @@ class ListSouvenirModel extends Model
         return $this->hasMany(SouvenirOperationModel::class, 'souvenir_id');
     }
 }
-
-

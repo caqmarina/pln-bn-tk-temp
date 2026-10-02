@@ -12,27 +12,27 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('content_plans', function (Blueprint $table) {
-        $table->id();
-        $table->date('tanggal_upload');
-        $table->time('time_upload');
-        $table->enum('jenis_konten', [
-            'Carausel',
-            'Single',
-        ])->default('Single');
-        $table->string('judul_konten');
-        $table->string('brief');
-        $table->string('link_draft');
-        $table->text('caption')->nullable();
-        $table->string('feedback');
-        $table->enum('status', [
-            'Draft',
-            'Review',
-            'Approved',
-            'Published'
-        ])->default('Draft');
+            $table->id();
+            $table->date('tanggal_upload');
+            $table->time('time_upload');
+            $table->enum('jenis_konten', [
+                'Carausel',
+                'Single',
+            ])->default('Single');
+            $table->string('judul_konten');
+            $table->string('brief');
+            $table->string('link_draft');
+            $table->text('caption')->nullable();
+            $table->string('feedback');
+            $table->enum('status', [
+                'Draft',
+                'Review',
+                'Approved',
+                'Published',
+            ])->default('Draft');
 
-        $table->timestamps();
-    });
+            $table->timestamps();
+        });
     }
 
     /**

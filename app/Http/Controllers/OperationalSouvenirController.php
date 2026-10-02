@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
-use App\Models\OperationalSouvenirModel;
-use App\Models\ListSouvenirModel;
 use App\Models\employeeModel;
+use App\Models\ListSouvenirModel;
+use App\Models\OperationalSouvenirModel;
+use Illuminate\Http\Request;
 
 class OperationalSouvenirController extends Controller
 {
@@ -14,7 +13,7 @@ class OperationalSouvenirController extends Controller
     {
         $data = OperationalSouvenirModel::with([
             'employee',
-            'souvenir'
+            'souvenir',
         ])->get();
 
         return view(
@@ -168,5 +167,4 @@ class OperationalSouvenirController extends Controller
             'operationalsouvenir.index'
         );
     }
-
 }

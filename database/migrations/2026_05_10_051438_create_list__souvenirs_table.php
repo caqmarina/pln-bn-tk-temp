@@ -11,17 +11,17 @@ return new class extends Migration
      */
     public function up(): void
     {
-        schema::create('list_souvenirs', function (Blueprint $table) {
+        Schema::create('list_souvenirs', function (Blueprint $table) {
 
-        $table->id();
-        $table->string('nama_souvenir');
-        $table->date('tanggal_perolehan');
-        $table->string('harga_perolehan');
-        $table->string('vendor');
-        $table->integer('jumlah_beli');
-        $table->integer('sisa')->default(0);
-        $table->timestamps();
-    });
+            $table->id();
+            $table->string('nama_souvenir');
+            $table->date('tanggal_perolehan');
+            $table->string('harga_perolehan');
+            $table->string('vendor');
+            $table->integer('jumlah_beli');
+            $table->integer('sisa')->default(0);
+            $table->timestamps();
+        });
     }
 
     /**
