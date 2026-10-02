@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\ListSouvenirModel;
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 class ListSouvenirController extends Controller

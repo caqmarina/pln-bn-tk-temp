@@ -11,6 +11,7 @@ class EmployeeController extends Controller
     public function index()
     {
         $data = employeeModel::all();
+
         return view('content.employee.index', compact('data'));
     }
 
@@ -45,6 +46,7 @@ class EmployeeController extends Controller
     public function edit($id)
     {
         $data = employeeModel::findOrFail($id);
+
         return view('content.employee.edit', compact('data'));
     }
 
