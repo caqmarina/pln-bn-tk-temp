@@ -33,20 +33,20 @@ class EmployeeController extends Controller
 
         employeeModel::create([
 <<<<<<< HEAD
-            'nama' => $request->nama,
-            'nip' => $request->nip,
-            'direktorat' => $request->direktorat,
-            'bidang' => $request->bidang,
-            'email' => $request->email,
-            // 'password' => Hash::make($request->password),
-=======
             'nama' => $validated['nama'],
             'nip' => $validated['nip'],
             'direktorat' => $validated['direktorat'],
             'bidang' => $validated['bidang'],
             'email' => $validated['email'],
             'password' => Hash::make($validated['password']),
->>>>>>> 6144aa0 (fix: removed public registration and mvoed employee credentials from user model to employee model)
+=======
+            'nama' => $request->nama,
+            'nip' => $request->nip,
+            'direktorat' => $request->direktorat,
+            'bidang' => $request->bidang,
+            'email' => $request->email,
+            // 'password' => Hash::make($request->password),
+>>>>>>> 3ad159c (used laravel pint to ensure code formatting and consistency across the project)
         ]);
 
         return redirect()->route('employee.index');
@@ -63,6 +63,7 @@ class EmployeeController extends Controller
     {
         $data = employeeModel::findOrFail($id);
 
+<<<<<<< HEAD
         $validated = $request->validate([
             'nama' => ['required', 'string', 'max:255'],
             'nip' => ['required', 'string', 'max:255', 'unique:employees,nip,'.$data->id],
@@ -70,6 +71,17 @@ class EmployeeController extends Controller
             'bidang' => ['required', 'string', 'max:255'],
             'email' => ['required', 'email', 'max:255', 'unique:employees,email,'.$data->id],
             'password' => ['nullable', 'string', 'min:8', 'confirmed'],
+=======
+        $data->update([
+            'nama' => $request->nama,
+            'nip' => $request->nip,
+            'direktorat' => $request->direktorat,
+            'bidang' => $request->bidang,
+            'email' => $request->email,
+            // 'password' => $request->password
+            //    ? Hash::make($request->password)
+            //    : $data->password,
+>>>>>>> 3ad159c (used laravel pint to ensure code formatting and consistency across the project)
         ]);
 
         $updates = collect($validated)->except('password')->all();
