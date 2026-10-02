@@ -167,5 +167,4 @@ class OperationalSouvenirController extends Controller
             'operationalsouvenir.index'
         );
     }
-
 }

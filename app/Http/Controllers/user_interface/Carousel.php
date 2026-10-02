@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\user_interface;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 
 class Carousel extends Controller
 {
