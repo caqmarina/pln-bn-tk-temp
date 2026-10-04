@@ -24,15 +24,17 @@
                     <h4 class="mb-1">Welcome to {{ config('variables.templateName') }}! 👋</h4>
                     <p class="mb-6">Please sign-in to your account and start the adventure</p>
 
-                    <form id="formAuthentication" class="mb-6" action="{{ url('/') }}" method="GET">
+                    <form id="formAuthentication" class="mb-6" action="{{ route('login') }}" method="POST">
+                        @csrf
                         <div class="mb-6">
                             <label for="email" class="form-label">Email or Username</label>
-                            <input type="text" class="form-control" id="email" name="email-username" placeholder="Enter your email or username" autofocus />
+                            <input type="email" class="form-control" id="email" name="email" value="{{ old('email') }}" placeholder="Enter your email" autofocus required />
+                            @error('email') <div class="text-danger small mt-1">{{ $message }}</div> @enderror
                         </div>
                         <div class="mb-6 form-password-toggle">
                             <label class="form-label" for="password">Password</label>
                             <div class="input-group input-group-merge">
-                                <input type="password" id="password" class="form-control" name="password" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" aria-describedby="password" />
+                                <input type="password" id="password" class="form-control" name="password" placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;" aria-describedby="password" required />
                                 <span class="input-group-text cursor-pointer"><i class="icon-base bx bx-hide"></i></span>
                             </div>
                         </div>
