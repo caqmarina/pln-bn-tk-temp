@@ -24,6 +24,10 @@
                     <h4 class="mb-1">Welcome to {{ config('variables.templateName') }}! 👋</h4>
                     <p class="mb-6">Please sign-in to your account and start the adventure</p>
 
+                    @if (session('status'))
+                        <div class="alert alert-success" role="alert">{{ session('status') }}</div>
+                    @endif
+
                     <form id="formAuthentication" class="mb-6" action="{{ route('login') }}" method="POST">
                         @csrf
                         <div class="mb-6">
