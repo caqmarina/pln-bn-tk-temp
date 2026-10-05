@@ -128,9 +128,9 @@
                         Single
                     </option>
 
-                    <option value="Carausel"
-                        {{ request('jenis_konten') == 'Carausel' ? 'selected' : '' }}>
-                        Carausel
+                    <option value="Carousel"
+                        {{ request('jenis_konten') == 'Carousel' ? 'selected' : '' }}>
+                        Carousel
                     </option>
 
                 </select>
