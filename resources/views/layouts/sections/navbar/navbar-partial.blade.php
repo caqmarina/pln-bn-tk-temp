@@ -84,14 +84,15 @@ use Illuminate\Support\Facades\Route;
                 <li>
                     <div class="dropdown-divider my-1"></div>
                 </li>
-                <li>
-                    <form action="{{ route('logout') }}" method="POST">
-                        @csrf
-                        <button type="submit" class="dropdown-item">
-                            <i class="icon-base bx bx-power-off icon-md me-3"></i><span>Log Out</span>
-                        </button>
-                    </form>
-                </li>
+<li>
+    <form action="{{ route('auth-logout') }}" method="POST">
+        @csrf
+        <button type="submit" class="dropdown-item">
+            <i class="icon-base bx bx-power-off icon-md me-3"></i>
+            <span>Log Out</span>
+        </button>
+    </form>
+</li>
             </ul>
         </li>
         <!--/ User -->

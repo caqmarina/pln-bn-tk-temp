@@ -16,13 +16,29 @@ class LoginBasic extends Controller
 
     public function login(Request $request): RedirectResponse
     {
-        $credentials = $request->validate([
-            'email' => ['required', 'email'],
+        $request->validate([
+            'email-username' => ['required'],
             'password' => ['required', 'string'],
         ]);
 
+        $login = $request->input('email-username');
+
+        $credentials = [
+            'password' => $request->password,
+        ];
+
+        if (filter_var($login, FILTER_VALIDATE_EMAIL)) {
+            $credentials['email'] = $login;
+        } else {
+            $credentials['name'] = $login;
+        }
+
         if (! Auth::attempt($credentials, $request->boolean('remember'))) {
-            return back()->withErrors(['email' => 'The provided credentials are incorrect.'])->onlyInput('email');
+            return back()
+                ->withErrors([
+                    'email-username' => 'Email/username atau password salah.',
+                ])
+                ->onlyInput('email-username');
         }
 
         $request->session()->regenerate();
@@ -33,6 +49,7 @@ class LoginBasic extends Controller
     public function logout(Request $request): RedirectResponse
     {
         Auth::logout();
+
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 

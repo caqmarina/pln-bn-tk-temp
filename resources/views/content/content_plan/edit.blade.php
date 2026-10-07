@@ -14,6 +14,20 @@
 
         <div class="card-body">
 
+            @if ($errors->any())
+                <div class="alert alert-danger">
+
+                    <strong>Data belum dapat diperbarui:</strong>
+
+                    <ul class="mb-0 mt-2">
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+
+                </div>
+            @endif
+
             <form action="{{ route('content_plan.update', $data->id) }}" method="POST">
                 @csrf
                 @method('PUT')
@@ -21,7 +35,7 @@
                 <div class="mb-3">
                     <label>Tanggal Upload</label>
 
-                    <input 
+                    <input
                         type="date"
                         name="tanggal_upload"
                         class="form-control"
@@ -32,7 +46,7 @@
                 <div class="mb-3">
                     <label>Time Upload</label>
 
-                    <input 
+                    <input
                         type="time"
                         name="time_upload"
                         class="form-control"
@@ -50,9 +64,9 @@
                             Single
                         </option>
 
-                        <option value="Carausel"
-                            {{ $data->jenis_konten == 'Carausel' ? 'selected' : '' }}>
-                            Carausel
+                        <option value="Carousel"
+                            {{ $data->jenis_konten == 'Carousel' ? 'selected' : '' }}>
+                            Carousel
                         </option>
 
                     </select>
@@ -61,7 +75,7 @@
                 <div class="mb-3">
                     <label>Judul Konten</label>
 
-                    <input 
+                    <input
                         type="text"
                         name="judul_konten"
                         class="form-control"
@@ -70,9 +84,20 @@
                 </div>
 
                 <div class="mb-3">
+                    <label>Brief</label>
+
+                    <input
+                        type="text"
+                        name="brief"
+                        class="form-control"
+                        value="{{ old('brief', $data->brief) }}"
+                    >
+                </div>
+
+                <div class="mb-3">
                     <label>Link Draft</label>
 
-                    <input 
+                    <input
                         type="text"
                         name="link_draft"
                         class="form-control"
@@ -83,7 +108,7 @@
                 <div class="mb-3">
                     <label>Caption</label>
 
-                    <textarea 
+                    <textarea
                         name="caption"
                         class="form-control"
                     >{{ $data->caption }}</textarea>
@@ -92,7 +117,7 @@
                 <div class="mb-3">
                     <label>Feedback</label>
 
-                    <textarea 
+                    <textarea
                         name="feedback"
                         class="form-control"
                     >{{ $data->feedback }}</textarea>

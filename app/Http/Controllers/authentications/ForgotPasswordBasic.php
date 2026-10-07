@@ -65,6 +65,8 @@ class ForgotPasswordBasic extends Controller
             ]);
         }
 
-        return redirect()->route('auth-login-basic')->with('status', __($status));
+        return redirect()
+            ->route('auth-login-basic')
+            ->with('status', __($status));
     }
 }

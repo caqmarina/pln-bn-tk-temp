@@ -11,7 +11,7 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware) {
-        $middleware->redirectGuestsTo('/auth/login-basic');
+        $middleware->redirectGuestsTo(fn () => route('auth-login-basic'));
         $middleware->redirectUsersTo('/content_plan');
     })
     ->withExceptions(function (Exceptions $exceptions) {
