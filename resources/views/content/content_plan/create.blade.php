@@ -101,11 +101,11 @@
                         </option>
 
                         <option value="Carousel"
-                            {{ old('jenis_konten') == 'Carousel' ? 'selected' : '' }}>
+    {{ old('jenis_konten') == 'Carousel' ? 'selected' : '' }}>
 
-                            Carousel
+    Carousel
 
-                        </option>
+</option>
 
                     </select>
 

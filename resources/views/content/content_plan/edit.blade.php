@@ -15,12 +15,16 @@
         <div class="card-body">
 
             @if ($errors->any())
-                <div class="alert alert-danger" role="alert">
-                    <ul class="mb-0">
+                <div class="alert alert-danger">
+
+                    <strong>Data belum dapat diperbarui:</strong>
+
+                    <ul class="mb-0 mt-2">
                         @foreach ($errors->all() as $error)
                             <li>{{ $error }}</li>
                         @endforeach
                     </ul>
+
                 </div>
             @endif
 
@@ -60,9 +64,9 @@
                             Single
                         </option>
 
-                        <option value="Carausel"
-                            {{ $data->jenis_konten == 'Carausel' ? 'selected' : '' }}>
-                            Carausel
+                        <option value="Carousel"
+                            {{ $data->jenis_konten == 'Carousel' ? 'selected' : '' }}>
+                            Carousel
                         </option>
 
                     </select>
