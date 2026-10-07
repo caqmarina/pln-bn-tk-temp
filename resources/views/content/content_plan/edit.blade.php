@@ -39,7 +39,7 @@
                     </ul>
 
                 </div>
-@endif
+            @endif
 
             <form action="{{ route('content_plan.update', $data->id) }}" method="POST">
                 @csrf
@@ -94,17 +94,6 @@
                         class="form-control"
                         value="{{ $data->judul_konten }}"
                     >
-                </div>
-
-                <div class="mb-3">
-                    <label>Brief</label>
-
-                    <input
-                        type="text"
-                        name="brief"
-                        class="form-control"
-                        value="{{ old('brief', $data->brief) }}"
-     >
                 </div>
 
                 <div class="mb-3">
