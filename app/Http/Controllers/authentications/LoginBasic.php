@@ -30,13 +30,13 @@ class LoginBasic extends Controller
         if (filter_var($login, FILTER_VALIDATE_EMAIL)) {
             $credentials['email'] = $login;
         } else {
-            $credentials['name'] = $login;
+            $credentials['nip'] = $login;
         }
 
         if (! Auth::attempt($credentials, $request->boolean('remember'))) {
             return back()
                 ->withErrors([
-                    'email-username' => 'Email/username atau password salah.',
+                    'email-username' => 'Email/NIP atau password salah.',
                 ])
                 ->onlyInput('email-username');
         }
@@ -49,7 +49,6 @@ class LoginBasic extends Controller
     public function logout(Request $request): RedirectResponse
     {
         Auth::logout();
-
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
