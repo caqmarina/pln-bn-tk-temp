@@ -1,10 +1,6 @@
 <?php
 
-<<<<<<< HEAD
 use App\Models\employeeModel;
-=======
-use App\Models\User;
->>>>>>> 3ad159c (used laravel pint to ensure code formatting and consistency across the project)
 
 return [
 
@@ -68,11 +64,7 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-<<<<<<< HEAD
             'model' => env('AUTH_MODEL', employeeModel::class),
-=======
-            'model' => env('AUTH_MODEL', User::class),
->>>>>>> 3ad159c (used laravel pint to ensure code formatting and consistency across the project)
         ],
 
         // 'users' => [

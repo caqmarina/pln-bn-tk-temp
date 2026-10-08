@@ -1,11 +1,6 @@
 <?php
 
-use App\Http\Controllers\authentications\ForgotPasswordBasic;
 use App\Http\Controllers\authentications\LoginBasic;
-<<<<<<< HEAD
-=======
-use App\Http\Controllers\authentications\RegisterBasic;
->>>>>>> 3ad159c (used laravel pint to ensure code formatting and consistency across the project)
 use App\Http\Controllers\cards\CardBasic;
 use App\Http\Controllers\ContentPlanController;
 use App\Http\Controllers\dashboard\Analytics;
