@@ -29,11 +29,7 @@ class LoginBasic extends Controller
         if (filter_var($login, FILTER_VALIDATE_EMAIL)) {
             $credentials['email'] = $login;
         } else {
-<<<<<<< HEAD
             $credentials['nip'] = $login;
-=======
-            $credentials['name'] = $login;
->>>>>>> 3ad159c (used laravel pint to ensure code formatting and consistency across the project)
         }
 
         if (Auth::attempt($credentials)) {
@@ -43,11 +39,7 @@ class LoginBasic extends Controller
         }
 
         return back()->withErrors([
-<<<<<<< HEAD
             'email-username' => 'Email/NIP atau password salah.',
-=======
-            'email-username' => 'Email atau password salah.',
->>>>>>> 3ad159c (used laravel pint to ensure code formatting and consistency across the project)
         ])->onlyInput('email-username');
     }
 
