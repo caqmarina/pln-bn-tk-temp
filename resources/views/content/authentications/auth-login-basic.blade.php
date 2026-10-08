@@ -21,19 +21,32 @@
                         </a>
                     </div>
                     <!-- /Logo -->
-                    <h4 class="mb-1">Welcome to {{ config('variables.templateName') }}! 👋</h4>
-                    <p class="mb-6">Please sign-in to your account and start the adventure</p>
 
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">{{ session('status') }}</div>
-                    @endif
+                    <h4 class="mb-1">
+                        Welcome to {{ config('variables.templateName') }}! 👋
+                    </h4>
+
+                    <p class="mb-6">
+                        Please sign-in to your account and start the adventure
+                    </p>
 
                     <form id="formAuthentication" class="mb-6" action="{{ route('login') }}" method="POST">
                         @csrf
                         <div class="mb-6">
-                            <label for="email" class="form-label">Email or Username</label>
-                            <input type="email" class="form-control" id="email" name="email" value="{{ old('email') }}" placeholder="Enter your email" autofocus required />
-                            @error('email') <div class="text-danger small mt-1">{{ $message }}</div> @enderror
+                            <label for="email-username" class="form-label">
+                                Email or NIP
+                            </label>
+
+                            <input
+                                type="text"
+                                class="form-control"
+                                id="email-username"
+                                name="email-username"
+                                value="{{ old('email-username') }}"
+                                placeholder="Enter your email or NIP"
+                                autofocus
+                                required
+                            />
                         </div>
                         <div class="mb-6 form-password-toggle">
                             <label class="form-label" for="password">Password</label>
@@ -48,9 +61,7 @@
                                     <input class="form-check-input" type="checkbox" id="remember-me" />
                                     <label class="form-check-label" for="remember-me"> Remember Me </label>
                                 </div>
-                                <a href="{{ url('auth/forgot-password-basic') }}">
-                                    <span>Forgot Password?</span>
-                                </a>
+
                             </div>
                         </div>
                         <div class="mb-6">
@@ -58,12 +69,6 @@
                         </div>
                     </form>
 
-                    <p class="text-center">
-                        <span>New on our platform?</span>
-                        <a href="{{ url('auth/register-basic') }}">
-                            <span>Create an account</span>
-                        </a>
-                    </p>
                 </div>
             </div>
             <!-- /Register -->

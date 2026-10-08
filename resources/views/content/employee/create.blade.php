@@ -36,7 +36,14 @@
                 <div class="mb-4">
                     <label for="exampleFormControlReadOnlyInputPlain1" class="form-label">Email</label>
                     <input type="email" class="form-control" id="email" name="email" placeholder="email@email.com" />
-                    
+                </div>
+                <div class="mb-4">
+                    <label for="password" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="password" name="password" required />
+                </div>
+                <div class="mb-4">
+                    <label for="password_confirmation" class="form-label">Confirm Password</label>
+                    <input type="password" class="form-control" id="password_confirmation" name="password_confirmation" required />
                 </div>
                 
                 <button type="submit" class="btn btn-primary">
