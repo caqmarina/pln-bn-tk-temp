@@ -1,8 +1,6 @@
 <?php
 
-use App\Http\Controllers\authentications\ForgotPasswordBasic;
 use App\Http\Controllers\authentications\LoginBasic;
-use App\Http\Controllers\authentications\RegisterBasic;
 use App\Http\Controllers\cards\CardBasic;
 use App\Http\Controllers\ContentPlanController;
 use App\Http\Controllers\dashboard\Analytics;
@@ -61,24 +59,6 @@ Route::middleware('guest')->group(function () {
     Route::post('/auth/login-basic', [LoginBasic::class, 'login'])
         ->name('auth-login-basic.store');
 
-    Route::get('/auth/register-basic', [RegisterBasic::class, 'index'])
-        ->name('auth-register-basic');
-
-    Route::post('/auth/register-basic', [RegisterBasic::class, 'register'])
-        ->name('auth-register-basic.store');
-
-    // forgot password
-    Route::get('/auth/forgot-password-basic', [ForgotPasswordBasic::class, 'index'])
-        ->name('auth-reset-password-basic');
-
-    Route::post('/auth/forgot-password-basic', [ForgotPasswordBasic::class, 'sendResetLink'])
-        ->name('password.email');
-
-    Route::get('/auth/reset-password-basic/{token}', [ForgotPasswordBasic::class, 'showResetForm'])
-        ->name('password.reset');
-
-    Route::post('/auth/reset-password-basic', [ForgotPasswordBasic::class, 'resetPassword'])
-        ->name('password.update');
 });
 
 Route::middleware('auth')->group(function () {

@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\User;
+use App\Models\employeeModel;
 
 return [
 
@@ -64,7 +64,11 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
+<<<<<<< HEAD
             'model' => env('AUTH_MODEL', User::class),
+=======
+            'model' => env('AUTH_MODEL', employeeModel::class),
+>>>>>>> 6144aa0 (fix: removed public registration and mvoed employee credentials from user model to employee model)
         ],
 
         // 'users' => [

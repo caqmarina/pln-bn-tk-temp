@@ -30,19 +30,23 @@
                         Please sign-in to your account and start the adventure
                     </p>
 
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
+                    <form id="formAuthentication" class="mb-6" action="{{ route('login') }}" method="POST">
+                        @csrf
+                        <div class="mb-6">
+                            <label for="email-username" class="form-label">
+                                Email or NIP
+                            </label>
 
-                    @if ($errors->any())
-                        <div class="alert alert-danger" role="alert">
-                            <ul class="mb-0">
-                                @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
+                            <input
+                                type="text"
+                                class="form-control"
+                                id="email-username"
+                                name="email-username"
+                                value="{{ old('email-username') }}"
+                                placeholder="Enter your email or NIP"
+                                autofocus
+                                required
+                            />
                         </div>
                     @endif
 
@@ -113,10 +117,6 @@
                                     </label>
                                 </div>
 
-                                <a href="{{ route('auth-reset-password-basic') }}">
-                                    <span>Forgot Password?</span>
-                                </a>
-
                             </div>
                         </div>
 
@@ -129,14 +129,6 @@
                             </button>
                         </div>
                     </form>
-
-                    <p class="text-center">
-                        <span>New on our platform?</span>
-
-                        <a href="{{ route('auth-register-basic') }}">
-                            <span>Create an account</span>
-                        </a>
-                    </p>
 
                 </div>
             </div>
