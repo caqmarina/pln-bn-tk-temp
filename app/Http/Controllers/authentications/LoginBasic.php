@@ -29,7 +29,7 @@ class LoginBasic extends Controller
         if (filter_var($login, FILTER_VALIDATE_EMAIL)) {
             $credentials['email'] = $login;
         } else {
-            $credentials['name'] = $login;
+            $credentials['nip'] = $login;
         }
 
         if (Auth::attempt($credentials)) {
@@ -39,7 +39,7 @@ class LoginBasic extends Controller
         }
 
         return back()->withErrors([
-            'email-username' => 'Email atau password salah.',
+            'email-username' => 'Email/NIP atau password salah.',
         ])->onlyInput('email-username');
     }
 

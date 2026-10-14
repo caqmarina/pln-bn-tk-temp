@@ -1,8 +1,6 @@
 <?php
 
-use App\Http\Controllers\authentications\ForgotPasswordBasic;
 use App\Http\Controllers\authentications\LoginBasic;
-use App\Http\Controllers\authentications\RegisterBasic;
 use App\Http\Controllers\cards\CardBasic;
 use App\Http\Controllers\ContentPlanController;
 use App\Http\Controllers\dashboard\Analytics;
@@ -49,6 +47,10 @@ use App\Http\Controllers\user_interface\TooltipsPopovers;
 use App\Http\Controllers\user_interface\Typography;
 use Illuminate\Support\Facades\Route;
 
+Route::get('/', [LoginBasic::class, 'index'])
+    ->middleware('guest')
+    ->name('home');
+
 Route::resource('employee', EmployeeController::class);
 Route::resource('content_plan', ContentPlanController::class);
 Route::resource('list_souvenir', ListSouvenirController::class);
@@ -80,10 +82,6 @@ Route::get('/pages/misc-under-maintenance', [MiscUnderMaintenance::class, 'index
 Route::get('/auth/login-basic', [LoginBasic::class, 'index'])->name('auth-login-basic');
 Route::post('/auth/login-basic', [LoginBasic::class, 'login'])->name('auth-login-basic.store');
 Route::post('/auth/logout', [LoginBasic::class, 'logout'])->name('auth-logout');
-Route::get('/auth/register-basic', [RegisterBasic::class, 'index'])->name('auth-register-basic');
-Route::post('/auth/register-basic', [RegisterBasic::class, 'register'])->name('auth-register-basic.store');
-Route::get('/auth/forgot-password-basic', [ForgotPasswordBasic::class, 'index'])->name('auth-reset-password-basic');
-
 // cards
 Route::get('/cards/basic', [CardBasic::class, 'index'])->name('cards-basic');
 

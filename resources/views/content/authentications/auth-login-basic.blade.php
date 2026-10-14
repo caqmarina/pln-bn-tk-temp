@@ -24,7 +24,7 @@
                     <h4 class="mb-1">Welcome to {{ config('variables.templateName') }}! 👋</h4>
                     <p class="mb-6">Please sign-in to your account and start the adventure</p>
 
-                    <form id="formAuthentication" class="mb-6" action="{{ route('auth-login-basic.store') }}" method="POST">            
+                    <form id="formAuthentication" class="mb-6" action="{{ route('auth-login-basic.store') }}" method="POST">
                     @csrf
                         <div class="mb-6">
                             <label for="email" class="form-label">Email or Username</label>
@@ -43,9 +43,6 @@
                                     <input class="form-check-input" type="checkbox" id="remember-me" />
                                     <label class="form-check-label" for="remember-me"> Remember Me </label>
                                 </div>
-                                <a href="{{ url('auth/forgot-password-basic') }}">
-                                    <span>Forgot Password?</span>
-                                </a>
                             </div>
                         </div>
                         <div class="mb-6">
@@ -53,12 +50,6 @@
                         </div>
                     </form>
 
-                    <p class="text-center">
-                        <span>New on our platform?</span>
-                        <a href="{{ url('auth/register-basic') }}">
-                            <span>Create an account</span>
-                        </a>
-                    </p>
                 </div>
             </div>
             <!-- /Register -->

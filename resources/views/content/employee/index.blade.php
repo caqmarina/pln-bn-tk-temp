@@ -8,7 +8,7 @@
 @section('content')
 <div class="card">
     <div class="card-header">
-        <a href="{{ route('employee.create') }}" class="btn btn-primary">Tambah User</a>
+        <a href="{{ route('employee.create') }}" class="btn btn-primary">Tambah Employee</a>
     </div>
 
     <div class="table-responsive text-nowrap">

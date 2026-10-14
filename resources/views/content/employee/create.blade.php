@@ -8,10 +8,10 @@
 
 @section('content')
 <div class="row g-6">
-    
+
     <!-- Form controls -->
     <div class="container-xxl flex-grow-1 container-p-y">
-        
+
         <div class="card">
             <h5 class="card-header">Employee Input</h5>
             <div class="card-body">
@@ -36,9 +36,16 @@
                 <div class="mb-4">
                     <label for="exampleFormControlReadOnlyInputPlain1" class="form-label">Email</label>
                     <input type="email" class="form-control" id="email" name="email" placeholder="email@email.com" />
-                    
                 </div>
-                
+                <div class="mb-4">
+                    <label for="password" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="password" name="password" required />
+                </div>
+                <div class="mb-4">
+                    <label for="password_confirmation" class="form-label">Confirm Password</label>
+                    <input type="password" class="form-control" id="password_confirmation" name="password_confirmation" required />
+                </div>
+
                 <button type="submit" class="btn btn-primary">
                     Save
                 </button>
@@ -50,6 +57,6 @@
         </div>
     </div>
 
-    
+
 </div>
 @endsection

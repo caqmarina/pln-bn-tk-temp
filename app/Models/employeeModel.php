@@ -2,11 +2,19 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
 
-class employeeModel extends Model
+class employeeModel extends Authenticatable
 {
+    use Notifiable;
+
     protected $table = 'employees';
+
+    protected $hidden = [
+        'password',
+        'remember_token',
+    ];
 
     protected $fillable = [
 
@@ -19,6 +27,13 @@ class employeeModel extends Model
         'role_id',
 
     ];
+
+    protected function casts(): array
+    {
+        return [
+            'password' => 'hashed',
+        ];
+    }
 
     /*
     |--------------------------------------------------------------------------
