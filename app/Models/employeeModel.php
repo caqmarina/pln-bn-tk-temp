@@ -11,6 +11,7 @@ class employeeModel extends Model
     protected $fillable = [
 
         'nama',
+        'tanggal_lahir',
         'nip',
         'direktorat',
         'bidang',

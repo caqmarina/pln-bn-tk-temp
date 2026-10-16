@@ -22,6 +22,10 @@
                     <input type="text" class="form-control" id="nama" name="nama" placeholder="Nama" />
                 </div>
                 <div class="mb-4">
+                    <label for="tanggal_lahir" class="form-label">Tanggal Lahir</label>
+                    <input type="date" class="form-control" id="tanggal_lahir" name="tanggal_lahir" />
+                </div>
+                <div class="mb-4">
                     <label for="exampleFormControlReadOnlyInput1" class="form-label">NIP</label>
                     <input class="form-control" type="text" id="nip" name="nip" placeholder="NIP"  />
                 </div>

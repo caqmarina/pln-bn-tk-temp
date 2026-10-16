@@ -4,7 +4,7 @@
 return [
     'creatorName' => 'ThemeSelection',
     'creatorUrl' => 'https://themeselection.com',
-    'templateName' => 'sneat',
+    'templateName' => 'PLN BBN',
     'templateSuffix' => 'Sneat Bootstrap Dashboard FREE',
     'templateVersion' => '2.0.0',
     'templateFree' => true,

@@ -16,6 +16,7 @@
             <thead>
                 <tr>
                     <th>Nama</th>
+                    <th>Tanggal Lahir</th>
                     <th>NIP</th>
                     <th>Direktorat</th>
                     <th>Bidang</th>
@@ -27,6 +28,10 @@
                 @foreach ($data as $row)
                 <tr>
                     <td>{{ $row->nama }}</td>
+                    <td>{{ $row->tanggal_lahir
+                            ? \Carbon\Carbon::parse($row->tanggal_lahir)->format('d/m/Y')
+                            : '-' }}
+                    </td>
                     <td>{{ $row->nip }}</td>
                     <td>{{ $row->direktorat }}</td>
                     <td>{{ $row->bidang }}</td>
