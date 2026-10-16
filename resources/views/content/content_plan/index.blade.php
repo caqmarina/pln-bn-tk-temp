@@ -128,9 +128,9 @@
                         Single
                     </option>
 
-                    <option value="Carausel"
-                        {{ request('jenis_konten') == 'Carausel' ? 'selected' : '' }}>
-                        Carausel
+                    <option value="Carousel"
+                        {{ request('jenis_konten') == 'Carousel' ? 'selected' : '' }}>
+                        Carousel
                     </option>
 
                 </select>
@@ -175,7 +175,7 @@
 
 
     {{-- TABLE --}}
-    <div class="table-responsive text-nowrap">
+    <div class="table-responsive">
 
         <table class="table table-bordered">
 
@@ -227,7 +227,8 @@
 
 
                     {{-- JENIS KONTEN --}}
-                    <td style="max-width:50px; white-space:normal;">
+                    <td style="white-space:normal;">
+
 
                         <span class="badge bg-label-info">
                             {{ $row->jenis_konten }}
@@ -259,19 +260,20 @@
 
 
                     {{-- CAPTION --}}
-                    <td style="width:500px; white-space:normal;">
+                    <td style="min-width:250px; max-width:350px; white-space:normal; overflow-wrap:anywhere;">
 
                         {{ $row->caption }}
 
                     </td>
 
 
+                    
                     {{-- FEEDBACK --}}
-                    <td style="max-width:25px; white-space:normal;">
-
+                    <td style="min-width:250px; max-width:350px; white-space:normal; overflow-wrap:break-word;">
+                        
                         {{ $row->feedback }}
-
                     </td>
+
 
 
                     {{-- STATUS --}}
@@ -307,35 +309,30 @@
 
 
                     {{-- AKSI --}}
-                    <td>
+                    <td style="min-width:145px; white-space:nowrap;">
 
                         <a href="{{ route('content_plan.edit', $row->id) }}"
                             class="btn btn-warning btn-sm">
-
                             Edit
-
                         </a>
-
 
                         <form action="{{ route('content_plan.destroy', $row->id) }}"
                             method="POST"
                             style="display:inline;">
 
                             @csrf
-
                             @method('DELETE')
 
-                            <button type="submit"
-                                class="btn btn-danger btn-sm"
-                                onclick="return confirm('Yakin hapus data ini?')">
-
-                                Delete
-
-                            </button>
+                        <button type="submit"
+                            class="btn btn-danger btn-sm"
+                            onclick="return confirm('Yakin hapus data ini?')">
+                            Delete
+                        </button>
 
                         </form>
 
                     </td>
+
 
                 </tr>
 

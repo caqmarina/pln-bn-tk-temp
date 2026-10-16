@@ -19,19 +19,30 @@ class EmployeeController extends Controller
         return view('content.employee.create');
     }
 
-    public function store(Request $request)
-    {
-        employeeModel::create([
-            'nama' => $request->nama,
-            'nip' => $request->nip,
-            'direktorat' => $request->direktorat,
-            'bidang' => $request->bidang,
-            'email' => $request->email,
-            // 'password' => Hash::make($request->password),
-        ]);
+    
+public function store(Request $request)
+{
+    $request->validate([
+        'nama' => 'required|string|max:255',
+        'tanggal_lahir' => 'nullable|date|before_or_equal:today',
+        'nip' => 'required|string|max:255|unique:employees,nip',
+        'direktorat' => 'required|string|max:255',
+        'bidang' => 'required|string|max:255',
+        'email' => 'required|email|max:255|unique:employees,email',
+    ]);
 
-        return redirect()->route('employee.index');
-    }
+    employeeModel::create([
+        'nama' => $request->nama,
+        'tanggal_lahir' => $request->tanggal_lahir,
+        'nip' => $request->nip,
+        'direktorat' => $request->direktorat,
+        'bidang' => $request->bidang,
+        'email' => $request->email,
+    ]);
+
+    return redirect()->route('employee.index');
+}
+
 
     public function edit($id)
     {
@@ -40,23 +51,32 @@ class EmployeeController extends Controller
         return view('content.employee.edit', compact('data'));
     }
 
-    public function update(Request $request, $id)
-    {
-        $data = employeeModel::findOrFail($id);
+    
+public function update(Request $request, $id)
+{
+    $data = employeeModel::findOrFail($id);
 
-        $data->update([
-            'nama' => $request->nama,
-            'nip' => $request->nip,
-            'direktorat' => $request->direktorat,
-            'bidang' => $request->bidang,
-            'email' => $request->email,
-            // 'password' => $request->password
-            //    ? Hash::make($request->password)
-            //    : $data->password,
-        ]);
+    $request->validate([
+        'nama' => 'required|string|max:255',
+        'tanggal_lahir' => 'nullable|date|before_or_equal:today',
+        'nip' => 'required|string|max:255|unique:employees,nip,' . $data->id,
+        'direktorat' => 'required|string|max:255',
+        'bidang' => 'required|string|max:255',
+        'email' => 'required|email|max:255|unique:employees,email,' . $data->id,
+    ]);
 
-        return redirect()->route('employee.index');
-    }
+    $data->update([
+        'nama' => $request->nama,
+        'tanggal_lahir' => $request->tanggal_lahir,
+        'nip' => $request->nip,
+        'direktorat' => $request->direktorat,
+        'bidang' => $request->bidang,
+        'email' => $request->email,
+    ]);
+
+    return redirect()->route('employee.index');
+}
+
 
     public function destroy($id)
     {

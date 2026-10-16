@@ -4,7 +4,9 @@ namespace App\Http\Controllers\authentications;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class RegisterBasic extends Controller
@@ -14,23 +16,25 @@ class RegisterBasic extends Controller
         return view('content.authentications.auth-register-basic');
     }
 
-    public function register(Request $request)
+    public function register(Request $request): RedirectResponse
     {
-        $request->validate([
-            'username' => 'required|string|max:255',
-            'email' => 'required|email|max:255|unique:users,email',
-            'password' => 'required|string|min:8',
-            'terms' => 'accepted',
+        $validated = $request->validate([
+            'username' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'email', 'max:255', 'unique:users,email'],
+            'password' => ['required', 'confirmed', 'min:8'],
+            'terms' => ['accepted'],
         ]);
 
-        User::create([
-            'name' => $request->username,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
+        $user = User::create([
+            'name' => $validated['username'],
+            'email' => $validated['email'],
+            'password' => Hash::make($validated['password']),
         ]);
 
-        return redirect()
-            ->route('auth-login-basic')
-            ->with('success', 'Registrasi berhasil. Silakan login.');
+        Auth::login($user);
+        $request->session()->regenerate();
+
+        return redirect()->intended('/content_plan')
+            ->with('success', 'Registrasi berhasil.');
     }
 }

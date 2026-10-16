@@ -82,7 +82,7 @@ class ContentPlanController extends Controller
             'tanggal_upload' => 'required|date',
             'time_upload' => 'required',
             'jenis_konten' => 'required|in:Single,Carousel',
-            'judul_konten' => 'required|string|max:255',
+            'judul_konten' => 'required|string',
             'brief' => 'required|string',
             'link_draft' => 'required|url',
             'caption' => 'nullable|string',
